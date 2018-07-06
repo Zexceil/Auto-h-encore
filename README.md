@@ -15,5 +15,5 @@
 - If you are using multiple vitas **MAKE SURE "DOCUMENTS/PS VITA/GAME/" IS EMPTY!**
 
 ## **Links**
-QCMA: https://codestation.github.io/qcma/
-H-encore: https://github.com/TheOfficialFloW/h-encore/releases
+- QCMA: https://codestation.github.io/qcma/
+- H-encore: https://github.com/TheOfficialFloW/h-encore/releases
