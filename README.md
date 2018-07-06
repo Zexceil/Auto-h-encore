@@ -3,14 +3,14 @@
 ## **Requirements**
 - You **MUST** have QCMA installed to the **DEFAULT DIRECTORY ON SYSTEM DRIVE**
 - All the QCMA directories **MUST BE THE DEFAULT ONES**
-- **ENSURE QCMA FOLDER "DOCUMENTS/PS VITA/GAME/" IS EMPTY!**
+- **ENSURE QCMA FOLDER "DOCUMENTS/PS VITA/APP/" IS EMPTY!**
 
 ## **Usage**
 1. Place Auto32/64 wherever you want.
 3. Run Auto32/64.exe **WITHOUT ADMIN** and **READ EVERYTHING WORD FOR WORD**
 
 ## **READ THIS**
-- If you are using multiple vitas **MAKE SURE "DOCUMENTS/PS VITA/GAME/" IS EMPTY!**
+- If you are using multiple vitas **MAKE SURE "DOCUMENTS/PS VITA/APP/" IS EMPTY!**
 
 ## **Links**
 - QCMA: https://codestation.github.io/qcma/
