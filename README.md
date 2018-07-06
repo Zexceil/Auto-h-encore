@@ -4,7 +4,7 @@
 - You **MUST** have QCMA installed to the **DEFAULT DIRECTORY ON SYSTEM DRIVE**
 - All the QCMA directories **MUST BE THE DEFAULT ONES**
 - **Have the H-encore.zip**
-- **ENSURE QCMA FOLDER "DOCUMENTS/PS VITA/GAME/" IS EMPTY!
+- **ENSURE QCMA FOLDER "DOCUMENTS/PS VITA/GAME/" IS EMPTY!**
 
 ## **Usage**
 1. Extract h-encore folder from H-encore.zip.
