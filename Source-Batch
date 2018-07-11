@@ -1,0 +1,120 @@
+@echo off
+title Hencore prep
+
+echo I DO NOT OWN ANY OF THE SOFTWARE AND NOR DID I CREATE IT; ALL CREDITS GO TO ORIGINAL AUTHORS. 
+echo.
+echo PLEASE ENSURE YOU HAVE QCMA INSTALLED AND SETUP
+echo.
+echo Checking QCMA install....
+pause
+if NOT exist %SystemDrive%\"Program Files"\Qcma\qcma_console.exe goto ntf
+echo.
+echo QCMA install valid
+echo Press Enter to start!
+pause
+echo Downloading H-encore....
+%b2eincfilepath%\wget "https://github.com/TheOfficialFloW/h-encore/releases/download/v1.0/h-encore.zip" -q --show-progress
+%b2eincfilepath%\sfk unzip h-encore.zip -yes > null
+cd h-encore
+echo.
+
+:OS
+echo OS Selection
+set /p arch= Enter 32/64 for 64/32-bit OS:
+if %arch% equ 64 goto 64
+if %arch% equ 32 goto 32
+if NOT %arch% equ 64 if NOT %arch% equ 32 goto OS 
+
+:64
+echo.
+echo Downloading files...
+%b2eincfilepath%\wget "http://ares.dl.playstation.net/cdn/JP0741/PCSG90096_00/xGMrXOkORxWRyqzLMihZPqsXAbAXLzvAdJFqtPJLAZTgOcqJobxQAhLNbgiFydVlcmVOrpZKklOYxizQCRpiLfjeROuWivGXfwgkq.pkg" -q --show-progress
+%b2eincfilepath%\wget https://github.com/yifanlu/psvimgtools/releases/download/v0.1/psvimgtools-0.1-win64.zip -q --show-progress
+%b2eincfilepath%\wget https://github.com/mmozeiko/pkg2zip/releases/download/v1.8/pkg2zip_64bit.zip -q --show-progress
+pause
+echo.
+echo Extracting files...
+%b2eincfilepath%\sfk unzip psvimgtools-0.1-win64.zip -yes > null
+%b2eincfilepath%\sfk unzip pkg2zip_64bit.zip -yes > null
+goto process
+
+:32
+echo.
+echo Downloading files...
+%b2eincfilepath%\wget http://ares.dl.playstation.net/cdn/JP0741/PCSG90096_00/xGMrXOkORxWRyqzLMihZPqsXAbAXLzvAdJFqtPJLAZTgOcqJobxQAhLNbgiFydVlcmVOrpZKklOYxizQCRpiLfjeROuWivGXfwgkq.pkg -q --show-progress
+%b2eincfilepath%\wget https://github.com/yifanlu/psvimgtools/releases/download/v0.1/psvimgtools-0.1-win32.zip -q --show-progress
+%b2eincfilepath%\wget https://github.com/mmozeiko/pkg2zip/releases/download/v1.8/pkg2zip_32bit.zip -q --show-progress
+pause
+echo.
+echo Extracting files...
+%b2eincfilepath%\sfk unzip psvimgtools-0.1-win32.zip -yes > null
+%b2eincfilepath%\sfk unzip pkg2zip_32bit.zip -yes > null
+goto process
+
+
+:process
+echo.
+echo.
+echo Unpacking PKG
+pkg2zip -x %cd%\xGMrXOkORxWRyqzLMihZPqsXAbAXLzvAdJFqtPJLAZTgOcqJobxQAhLNbgiFydVlcmVOrpZKklOYxizQCRpiLfjeROuWivGXfwgkq.pkg 
+echo.
+echo Prep work
+xcopy /E %cd%\app\PCSG90096 %cd%\app\ux0_temp_game_PCSG90096_app_PCSG90096 
+copy %cd%\app\PCSG90096\sce_sys\package\temp.bin %cd%\license\ux0_temp_game_PCSG90096_license_app_PCSG90096\temp.bin 
+ren %cd%\license\ux0_temp_game_PCSG90096_license_app_PCSG90096\temp.bin 6488b73b912a753a492e2714e9b38bc7.rif 
+
+echo Plug in your PS-Vita and press ENTER when done.
+pause
+START %SystemDrive%\"Program Files"\Qcma\qcma_console.exe
+echo WAIT FOR TIMEOUT TO FINISH
+timeout 10
+Taskkill /IM qcma_console.exe /F
+dir /D /b  %systemdrive%\Users\%USERNAME%\Documents\"PS Vita"\APP | clip
+dir /D /b  %systemdrive%\Users\%USERNAME%\Documents\"PS Vita"\APP > DND.txt
+set /p DND=<DND.txt
+echo.
+echo.
+echo.
+echo a website will now be opened
+echo after this copy the NON-BOLD output string
+echo if you understand press ENTER
+pause
+start http://cma.henkaku.xyz/?aid=%DND%
+echo Once done press ENTER
+set /p AID= Enter the output string from AID website:
+echo.
+echo.
+echo.
+psvimg-create -n app -K %AID% app PCSG90096/app 
+psvimg-create -n appmeta -K %AID% appmeta PCSG90096/appmeta 
+psvimg-create -n license -K %AID% license PCSG90096/license 
+psvimg-create -n savedata -K %AID% savedata PCSG90096/savedata 
+pause
+xcopy /E /I %cd%\PCSG90096 %systemdrive%\Users\%USERNAME%\Documents\"PS Vita"\APP\%DND%\PCSG90096
+echo.
+echo.
+echo If you have disconnected your Vita please reconnect it!
+pause
+echo.
+echo.
+echo.
+echo When QCMA IS STARTED open Content manager on your PS Vita
+echo.
+echo "select Copy Content > PC ---> PS Vita > Applications"
+echo.
+echo then copy over h-encore
+echo.
+echo Once done close the qcma window
+pause
+START %SystemDrive%\"Program Files"\Qcma\qcma_console.exe
+echo Thank you for using this and if you still can't do this then I suggest a doctor
+echo Jokes aside press ENTER
+pause
+exit
+
+:ntf
+echo QCMA install not valid; program will now close!
+pause
+exit
+
+
